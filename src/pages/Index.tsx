@@ -11,14 +11,18 @@ const Index = () => {
     <div className="min-h-screen bg-white font-roboto p-4">
       <Header />
       <div className="container mx-auto">
-        <InputPanel />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-          <ScrewInfo />
-          <div className="grid grid-cols-1 gap-4">
-            <DataTable />
-            <ChassisView />
-            <ControlPanel />
+        <div className="grid grid-cols-3 gap-4 mb-4">
+          <div className="col-span-2">
+            <InputPanel />
           </div>
+          <div className="col-span-1">
+            <ScrewInfo />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 gap-4">
+          <DataTable />
+          <ChassisView />
+          <ControlPanel />
         </div>
       </div>
     </div>
