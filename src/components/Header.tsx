@@ -13,17 +13,17 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-gradient-to-r from-nokia-blue to-nokia-lightblue p-4 text-white shadow-md">
+    <header className="bg-gradient-to-r from-nokia-blue to-nokia-lightblue p-4 text-white rounded-full mb-4">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          <div className="font-bold text-2xl text-white">NOKIA</div>
+          <div className="font-bold text-3xl text-white">NOKIA</div>
         </div>
-        <div className="text-center font-roboto text-xl font-bold">
+        <div className="text-center font-bold text-2xl">
           SMART SCREW DRIVER SYSTEM
         </div>
-        <div className="text-right font-roboto">
-          <div className="text-sm opacity-90">{format(currentTime, 'dd MMMM yyyy')}</div>
-          <div className="text-xl font-bold">{format(currentTime, 'HH:mm:ss')}</div>
+        <div className="text-right">
+          <div className="text-lg">{format(currentTime, 'dd MMMM yyyy')}</div>
+          <div className="text-2xl font-bold">{format(currentTime, 'HH:mm')}</div>
         </div>
       </div>
     </header>

@@ -1,34 +1,32 @@
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { PlayCircle, StopCircle } from "lucide-react";
 
 const ControlPanel = () => {
   return (
-    <Card className="p-6">
-      <div className="grid grid-cols-2 gap-8">
-        <div className="flex flex-col items-center space-y-4">
-          <Button className="w-32 h-12 bg-green-500 hover:bg-green-600" >
-            <PlayCircle className="mr-2 h-5 w-5" />
-            START
-          </Button>
-          <div className="text-center">
-            <div className="text-sm font-semibold mb-2">SCREW DRIVER</div>
-            <div className="w-8 h-8 rounded-full bg-green-500 mx-auto"></div>
-          </div>
-        </div>
-        <div className="flex flex-col items-center space-y-4">
-          <Button className="w-32 h-12 bg-red-500 hover:bg-red-600">
-            <StopCircle className="mr-2 h-5 w-5" />
-            STOP
-          </Button>
-          <div className="text-center">
-            <div className="text-sm font-semibold mb-2">PLCM STATUS</div>
-            <div className="w-8 h-8 rounded-full bg-green-500 mx-auto"></div>
+    <div className="grid grid-cols-2 gap-4">
+      <div className="flex flex-col items-center space-y-6">
+        <Button className="w-40 h-14 text-xl font-bold bg-green-500 hover:bg-green-600 rounded-full">
+          START
+        </Button>
+        <div className="bg-nokia-blue/20 p-4 rounded-lg w-full">
+          <div className="text-xl font-bold text-center mb-4">SCREW DRIVER</div>
+          <div className="flex justify-center">
+            <div className="w-16 h-16 rounded-full bg-green-500"></div>
           </div>
         </div>
       </div>
-    </Card>
+      <div className="flex flex-col items-center space-y-6">
+        <Button className="w-40 h-14 text-xl font-bold bg-red-500 hover:bg-red-600 rounded-full">
+          STOP
+        </Button>
+        <div className="bg-gray-300 p-4 rounded-lg w-full">
+          <div className="text-xl font-bold text-center mb-4">PLCM STATUS :</div>
+          <div className="flex justify-center">
+            <div className="w-16 h-16 rounded-full bg-green-500"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

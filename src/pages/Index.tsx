@@ -8,17 +8,15 @@ import ControlPanel from "@/components/ControlPanel";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-50 font-roboto">
+    <div className="min-h-screen bg-white font-roboto p-4">
       <Header />
-      <div className="container mx-auto py-4">
+      <div className="container mx-auto">
         <InputPanel />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
           <ScrewInfo />
-          <ChassisView />
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <DataTable />
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 gap-4">
+            <DataTable />
+            <ChassisView />
             <ControlPanel />
           </div>
         </div>

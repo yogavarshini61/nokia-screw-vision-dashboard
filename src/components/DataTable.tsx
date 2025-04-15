@@ -8,65 +8,93 @@ interface ScrewData {
   torque: { min: number; max: number; actual: number };
 }
 
-const generateMockData = (): ScrewData[] => {
-  return Array.from({ length: 19 }, (_, i) => ({
-    id: i + 1,
-    angle: {
-      min: 3900,
-      max: 4000,
-      actual: Math.random() > 0.1 ? 3912 : 4100,
-    },
-    torque: {
-      min: 2.0,
-      max: 2.5,
-      actual: Math.random() > 0.1 ? 2.3 : 1.8,
-    },
-  }));
-};
+const screwDataItems: ScrewData[] = [
+  { id: 1, angle: { min: 3600, max: 5500, actual: 3782 }, torque: { min: 2.1, max: 2.8, actual: 2.4 } },
+  { id: 2, angle: { min: 3600, max: 5500, actual: 3939 }, torque: { min: 2.1, max: 2.8, actual: 2.6 } },
+  { id: 3, angle: { min: 3600, max: 5500, actual: 5422 }, torque: { min: 2.1, max: 2.8, actual: 2.2 } },
+  { id: 4, angle: { min: 3600, max: 5500, actual: 4567 }, torque: { min: 2.1, max: 2.8, actual: 2.5 } },
+  { id: 5, angle: { min: 3600, max: 5500, actual: 4867 }, torque: { min: 2.1, max: 2.8, actual: 2.3 } },
+  { id: 6, angle: { min: 3600, max: 5500, actual: 5789 }, torque: { min: 2.1, max: 2.8, actual: 2.9 } },
+  { id: 7, angle: { min: 3600, max: 5500, actual: 4656 }, torque: { min: 2.1, max: 2.8, actual: 2.5 } },
+  { id: 8, angle: { min: 3600, max: 5500, actual: 5123 }, torque: { min: 2.1, max: 2.8, actual: 2.7 } },
+  { id: 9, angle: { min: 3600, max: 5500, actual: 5234 }, torque: { min: 2.1, max: 2.8, actual: 2.2 } },
+  { id: 10, angle: { min: 3600, max: 5500, actual: 4789 }, torque: { min: 2.1, max: 2.8, actual: 2.3 } },
+  { id: 11, angle: { min: 3600, max: 5500, actual: 5900 }, torque: { min: 2.1, max: 2.8, actual: 3.0 } },
+  { id: 12, angle: { min: 3600, max: 5500, actual: 3782 }, torque: { min: 2.1, max: 2.8, actual: 2.5 } },
+  { id: 13, angle: { min: 3600, max: 5500, actual: 4125 }, torque: { min: 2.1, max: 2.8, actual: 2.3 } },
+  { id: 14, angle: { min: 3600, max: 5500, actual: 5959 }, torque: { min: 2.1, max: 2.8, actual: 2.9 } },
+  { id: 15, angle: { min: 3600, max: 5500, actual: 3999 }, torque: { min: 2.1, max: 2.8, actual: 2.4 } },
+  { id: 16, angle: { min: 3600, max: 5500, actual: 4177 }, torque: { min: 2.1, max: 2.8, actual: 2.4 } },
+  { id: 17, angle: { min: 3600, max: 5500, actual: 4589 }, torque: { min: 2.1, max: 2.8, actual: 2.5 } },
+  { id: 18, angle: { min: 3600, max: 5500, actual: 3890 }, torque: { min: 2.1, max: 2.8, actual: 2.7 } },
+  { id: 19, angle: { min: 3600, max: 5500, actual: 3912 }, torque: { min: 2.1, max: 2.8, actual: 2.3 } },
+];
 
 const DataTable = () => {
-  const screwData = generateMockData();
-
   const isWithinSpec = (value: number, min: number, max: number) => {
     return value >= min && value <= max;
   };
 
   return (
-    <Card className="p-4">
-      <div className="space-y-4">
-        {["Angle", "Torque"].map((section) => (
-          <div key={section} className="rounded-lg border">
-            <h3 className="p-2 bg-nokia-blue text-white font-semibold">{section}</h3>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Screw ID</TableHead>
-                  <TableHead>Min</TableHead>
-                  <TableHead>Max</TableHead>
-                  <TableHead>Actual</TableHead>
+    <Card className="p-2 overflow-auto max-h-[500px]">
+      <div className="mb-2">
+        <Table className="border-collapse">
+          <TableHeader>
+            <TableRow>
+              <TableHead colSpan={3} className="text-center bg-gray-100 border border-gray-300">
+                Angle
+              </TableHead>
+              <TableHead colSpan={3} className="text-center bg-gray-100 border border-gray-300">
+                Torque
+              </TableHead>
+            </TableRow>
+            <TableRow>
+              <TableHead className="text-center border border-gray-300">Min</TableHead>
+              <TableHead className="text-center border border-gray-300">Max</TableHead>
+              <TableHead className="text-center border border-gray-300">Actual</TableHead>
+              <TableHead className="text-center border border-gray-300">Min</TableHead>
+              <TableHead className="text-center border border-gray-300">Max</TableHead>
+              <TableHead className="text-center border border-gray-300">Actual</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {screwDataItems.map((screw) => {
+              const isAngleValid = isWithinSpec(screw.angle.actual, screw.angle.min, screw.angle.max);
+              const isTorqueValid = isWithinSpec(screw.torque.actual, screw.torque.min, screw.torque.max);
+              
+              return (
+                <TableRow key={screw.id}>
+                  <TableCell className={`text-center py-1 px-2 border border-gray-300 ${isAngleValid ? 'bg-green-600 text-white' : ''}`}>
+                    {screw.angle.min}
+                  </TableCell>
+                  <TableCell className={`text-center py-1 px-2 border border-gray-300 ${isAngleValid ? 'bg-green-600 text-white' : ''}`}>
+                    {screw.angle.max}
+                  </TableCell>
+                  <TableCell 
+                    className={`text-center py-1 px-2 border border-gray-300 font-bold ${
+                      isAngleValid ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
+                    }`}
+                  >
+                    {screw.angle.actual}
+                  </TableCell>
+                  <TableCell className={`text-center py-1 px-2 border border-gray-300 ${isTorqueValid ? 'bg-green-600 text-white' : ''}`}>
+                    {screw.torque.min}
+                  </TableCell>
+                  <TableCell className={`text-center py-1 px-2 border border-gray-300 ${isTorqueValid ? 'bg-green-600 text-white' : ''}`}>
+                    {screw.torque.max}
+                  </TableCell>
+                  <TableCell 
+                    className={`text-center py-1 px-2 border border-gray-300 font-bold ${
+                      isTorqueValid ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
+                    }`}
+                  >
+                    {screw.torque.actual}
+                  </TableCell>
                 </TableRow>
-              </TableHeader>
-              <TableBody>
-                {screwData.map((screw) => {
-                  const data = section.toLowerCase() as keyof typeof screw;
-                  const values = screw[data] as any;
-                  const isValid = isWithinSpec(values.actual, values.min, values.max);
-
-                  return (
-                    <TableRow key={`${section}-${screw.id}`}>
-                      <TableCell>{screw.id}</TableCell>
-                      <TableCell>{values.min}</TableCell>
-                      <TableCell>{values.max}</TableCell>
-                      <TableCell className={`font-semibold ${isValid ? 'text-green-600' : 'text-red-600'}`}>
-                        {values.actual}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </div>
-        ))}
+              );
+            })}
+          </TableBody>
+        </Table>
       </div>
     </Card>
   );
