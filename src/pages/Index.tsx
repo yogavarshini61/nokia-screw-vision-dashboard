@@ -8,9 +8,9 @@ import ControlPanel from "@/components/ControlPanel";
 
 const Index = () => {
   return (
-    <div className="h-screen bg-white font-roboto p-4">
+    <div className="min-h-screen bg-white font-roboto p-4">
       <Header />
-      <div className="container mx-auto h-[calc(100vh-6rem)]">
+      <div className="container mx-auto">
         <div className="grid grid-cols-3 gap-4 mb-4">
           <div className="col-span-2">
             <InputPanel />

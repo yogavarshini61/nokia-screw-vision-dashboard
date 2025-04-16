@@ -1,3 +1,4 @@
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 
@@ -36,53 +37,53 @@ const DataTable = () => {
 
   return (
     <Card className="p-2">
-      <Table className="border-collapse">
+      <Table className="border-collapse w-full text-sm">
         <TableHeader>
-          <TableRow>
-            <TableHead colSpan={3} className="text-center bg-gray-100 border border-gray-300">
+          <TableRow className="h-8">
+            <TableHead colSpan={3} className="text-center bg-gray-100 border border-gray-300 p-1">
               Angle
             </TableHead>
-            <TableHead colSpan={3} className="text-center bg-gray-100 border border-gray-300">
+            <TableHead colSpan={3} className="text-center bg-gray-100 border border-gray-300 p-1">
               Torque
             </TableHead>
           </TableRow>
-          <TableRow>
-            <TableHead className="text-center border border-gray-300">Min</TableHead>
-            <TableHead className="text-center border border-gray-300">Max</TableHead>
-            <TableHead className="text-center border border-gray-300">Actual</TableHead>
-            <TableHead className="text-center border border-gray-300">Min</TableHead>
-            <TableHead className="text-center border border-gray-300">Max</TableHead>
-            <TableHead className="text-center border border-gray-300">Actual</TableHead>
+          <TableRow className="h-6">
+            <TableHead className="text-center border border-gray-300 p-1 text-xs">Min</TableHead>
+            <TableHead className="text-center border border-gray-300 p-1 text-xs">Max</TableHead>
+            <TableHead className="text-center border border-gray-300 p-1 text-xs">Actual</TableHead>
+            <TableHead className="text-center border border-gray-300 p-1 text-xs">Min</TableHead>
+            <TableHead className="text-center border border-gray-300 p-1 text-xs">Max</TableHead>
+            <TableHead className="text-center border border-gray-300 p-1 text-xs">Actual</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {screwDataItems.slice(0, 10).map((screw) => {
+          {screwDataItems.map((screw) => {
             const isAngleValid = isWithinSpec(screw.angle.actual, screw.angle.min, screw.angle.max);
             const isTorqueValid = isWithinSpec(screw.torque.actual, screw.torque.min, screw.torque.max);
             
             return (
-              <TableRow key={screw.id} className="h-8">
-                <TableCell className={`text-center py-0.5 px-2 border border-gray-300 ${isAngleValid ? 'bg-green-600 text-white' : ''}`}>
+              <TableRow key={screw.id} className="h-6">
+                <TableCell className={`text-center py-0.5 px-1 border border-gray-300 text-xs ${isAngleValid ? 'bg-green-600 text-white' : ''}`}>
                   {screw.angle.min}
                 </TableCell>
-                <TableCell className={`text-center py-0.5 px-2 border border-gray-300 ${isAngleValid ? 'bg-green-600 text-white' : ''}`}>
+                <TableCell className={`text-center py-0.5 px-1 border border-gray-300 text-xs ${isAngleValid ? 'bg-green-600 text-white' : ''}`}>
                   {screw.angle.max}
                 </TableCell>
                 <TableCell 
-                  className={`text-center py-0.5 px-2 border border-gray-300 font-bold ${
+                  className={`text-center py-0.5 px-1 border border-gray-300 text-xs font-bold ${
                     isAngleValid ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
                   }`}
                 >
                   {screw.angle.actual}
                 </TableCell>
-                <TableCell className={`text-center py-0.5 px-2 border border-gray-300 ${isTorqueValid ? 'bg-green-600 text-white' : ''}`}>
+                <TableCell className={`text-center py-0.5 px-1 border border-gray-300 text-xs ${isTorqueValid ? 'bg-green-600 text-white' : ''}`}>
                   {screw.torque.min}
                 </TableCell>
-                <TableCell className={`text-center py-0.5 px-2 border border-gray-300 ${isTorqueValid ? 'bg-green-600 text-white' : ''}`}>
+                <TableCell className={`text-center py-0.5 px-1 border border-gray-300 text-xs ${isTorqueValid ? 'bg-green-600 text-white' : ''}`}>
                   {screw.torque.max}
                 </TableCell>
                 <TableCell 
-                  className={`text-center py-0.5 px-2 border border-gray-300 font-bold ${
+                  className={`text-center py-0.5 px-1 border border-gray-300 text-xs font-bold ${
                     isTorqueValid ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
                   }`}
                 >
