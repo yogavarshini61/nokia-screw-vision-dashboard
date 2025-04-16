@@ -10,7 +10,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white font-roboto p-4">
       <Header />
-      <div className="container mx-auto">
+      <div className="container mx-auto h-[calc(100vh-6rem)]">
         <div className="grid grid-cols-3 gap-4 mb-4">
           <div className="col-span-2">
             <InputPanel />
@@ -19,8 +19,10 @@ const Index = () => {
             <ScrewInfo />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
-          <DataTable />
+        <div className="grid grid-cols-2 gap-4 h-[calc(100%-4rem)]">
+          <div className="overflow-auto">
+            <DataTable />
+          </div>
           <div className="flex flex-col gap-4">
             <ChassisView />
             <ControlPanel />
