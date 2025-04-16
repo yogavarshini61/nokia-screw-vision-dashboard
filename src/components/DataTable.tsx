@@ -1,3 +1,4 @@
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -36,59 +37,84 @@ const DataTable = () => {
   };
 
   return (
-    <Card className="p-2">
-      <div className="h-[300px]">
-        <Table className="border-collapse w-full text-sm">
+    <Card className="p-4 border-2 border-gray-200">
+      <div className="h-[280px]">
+        <Table className="border-collapse">
           <TableHeader className="sticky top-0 z-10 bg-white">
-            <TableRow className="h-8">
-              <TableHead colSpan={3} className="text-center bg-gray-100 border border-gray-300 p-1">
+            <TableRow>
+              <TableHead className="text-center font-bold text-gray-800 bg-gray-100 border-2 border-gray-300 py-3" colSpan={2}>
+                Screw No.
+              </TableHead>
+              <TableHead className="text-center font-bold text-gray-800 bg-gray-100 border-2 border-gray-300 py-3" colSpan={3}>
                 Angle
               </TableHead>
-              <TableHead colSpan={3} className="text-center bg-gray-100 border border-gray-300 p-1">
+              <TableHead className="text-center font-bold text-gray-800 bg-gray-100 border-2 border-gray-300 py-3" colSpan={3}>
                 Torque
               </TableHead>
             </TableRow>
-            <TableRow className="h-6">
-              <TableHead className="text-center border border-gray-300 p-1 text-xs bg-gray-100">Min</TableHead>
-              <TableHead className="text-center border border-gray-300 p-1 text-xs bg-gray-100">Max</TableHead>
-              <TableHead className="text-center border border-gray-300 p-1 text-xs bg-gray-100">Actual</TableHead>
-              <TableHead className="text-center border border-gray-300 p-1 text-xs bg-gray-100">Min</TableHead>
-              <TableHead className="text-center border border-gray-300 p-1 text-xs bg-gray-100">Max</TableHead>
-              <TableHead className="text-center border border-gray-300 p-1 text-xs bg-gray-100">Actual</TableHead>
+            <TableRow>
+              <TableHead className="text-center font-semibold text-sm text-gray-700 bg-gray-50 border-2 border-gray-300 py-2">
+                No.
+              </TableHead>
+              <TableHead className="text-center font-semibold text-sm text-gray-700 bg-gray-50 border-2 border-gray-300 py-2">
+                Status
+              </TableHead>
+              <TableHead className="text-center font-semibold text-sm text-gray-700 bg-gray-50 border-2 border-gray-300 py-2">
+                Min
+              </TableHead>
+              <TableHead className="text-center font-semibold text-sm text-gray-700 bg-gray-50 border-2 border-gray-300 py-2">
+                Max
+              </TableHead>
+              <TableHead className="text-center font-semibold text-sm text-gray-700 bg-gray-50 border-2 border-gray-300 py-2">
+                Actual
+              </TableHead>
+              <TableHead className="text-center font-semibold text-sm text-gray-700 bg-gray-50 border-2 border-gray-300 py-2">
+                Min
+              </TableHead>
+              <TableHead className="text-center font-semibold text-sm text-gray-700 bg-gray-50 border-2 border-gray-300 py-2">
+                Max
+              </TableHead>
+              <TableHead className="text-center font-semibold text-sm text-gray-700 bg-gray-50 border-2 border-gray-300 py-2">
+                Actual
+              </TableHead>
             </TableRow>
           </TableHeader>
-          <ScrollArea className="h-[220px]">
+          <ScrollArea className="h-[180px]">
             <TableBody>
-              {screwDataItems.map((screw) => {
+              {screwDataItems.map((screw, index) => {
                 const isAngleValid = isWithinSpec(screw.angle.actual, screw.angle.min, screw.angle.max);
                 const isTorqueValid = isWithinSpec(screw.torque.actual, screw.torque.min, screw.torque.max);
+                const status = isAngleValid && isTorqueValid ? "OK" : "NG";
+                const statusColor = status === "OK" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800";
                 
                 return (
-                  <TableRow key={screw.id} className="h-6">
-                    <TableCell className={`text-center py-0.5 px-1 border border-gray-300 text-xs ${isAngleValid ? 'bg-green-600 text-white' : ''}`}>
+                  <TableRow key={screw.id} className="hover:bg-gray-50">
+                    <TableCell className="text-center border-2 border-gray-200 py-2">
+                      {index + 1}
+                    </TableCell>
+                    <TableCell className={`text-center border-2 border-gray-200 py-2 font-semibold ${statusColor}`}>
+                      {status}
+                    </TableCell>
+                    <TableCell className="text-center border-2 border-gray-200 py-2">
                       {screw.angle.min}
                     </TableCell>
-                    <TableCell className={`text-center py-0.5 px-1 border border-gray-300 text-xs ${isAngleValid ? 'bg-green-600 text-white' : ''}`}>
+                    <TableCell className="text-center border-2 border-gray-200 py-2">
                       {screw.angle.max}
                     </TableCell>
-                    <TableCell 
-                      className={`text-center py-0.5 px-1 border border-gray-300 text-xs font-bold ${
-                        isAngleValid ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
-                      }`}
-                    >
+                    <TableCell className={`text-center border-2 border-gray-200 py-2 font-semibold ${
+                      isAngleValid ? "text-green-600" : "text-red-600"
+                    }`}>
                       {screw.angle.actual}
                     </TableCell>
-                    <TableCell className={`text-center py-0.5 px-1 border border-gray-300 text-xs ${isTorqueValid ? 'bg-green-600 text-white' : ''}`}>
+                    <TableCell className="text-center border-2 border-gray-200 py-2">
                       {screw.torque.min}
                     </TableCell>
-                    <TableCell className={`text-center py-0.5 px-1 border border-gray-300 text-xs ${isTorqueValid ? 'bg-green-600 text-white' : ''}`}>
+                    <TableCell className="text-center border-2 border-gray-200 py-2">
                       {screw.torque.max}
                     </TableCell>
-                    <TableCell 
-                      className={`text-center py-0.5 px-1 border border-gray-300 text-xs font-bold ${
-                        isTorqueValid ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
-                      }`}
-                    >
+                    <TableCell className={`text-center border-2 border-gray-200 py-2 font-semibold ${
+                      isTorqueValid ? "text-green-600" : "text-red-600"
+                    }`}>
                       {screw.torque.actual}
                     </TableCell>
                   </TableRow>

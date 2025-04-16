@@ -11,10 +11,10 @@ import ControlPanel from "@/components/ControlPanel";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white font-roboto p-4">
+    <div className="min-h-screen bg-gray-50 font-roboto">
       <Header />
-      <div className="container mx-auto">
-        <div className="grid grid-cols-3 gap-4 mb-4">
+      <div className="container mx-auto p-6">
+        <div className="grid grid-cols-3 gap-6 mb-6">
           <div className="col-span-2">
             <InputPanel />
           </div>
@@ -23,31 +23,31 @@ const Index = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-4">
+        <div className="grid grid-cols-2 gap-6">
+          <div className="space-y-6">
             <DataTable />
             <div className="grid grid-cols-3 gap-4">
-              <Link to="/angle-pattern">
-                <Button className="w-full h-12">
+              <Link to="/angle-pattern" className="w-full">
+                <Button className="w-full h-12 bg-nokia-blue hover:bg-nokia-blue/90">
                   <Activity className="mr-2" />
                   Angle Pattern
                 </Button>
               </Link>
-              <Link to="/torque-pattern">
-                <Button className="w-full h-12">
+              <Link to="/torque-pattern" className="w-full">
+                <Button className="w-full h-12 bg-nokia-blue hover:bg-nokia-blue/90">
                   <ChartBar className="mr-2" />
                   Torque Pattern
                 </Button>
               </Link>
-              <Link to="/report">
-                <Button className="w-full h-12">
+              <Link to="/report" className="w-full">
+                <Button className="w-full h-12 bg-nokia-blue hover:bg-nokia-blue/90">
                   <FileText className="mr-2" />
                   Report
                 </Button>
               </Link>
             </div>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="space-y-6">
             <ChassisView />
             <ControlPanel />
           </div>
